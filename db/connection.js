@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 
 const dbuser = 'seefood-user';
 const password = 'SWvYN1mfRljRubs9';
+const test = 12
 
-const mongoURI =
-	`mongodb+srv://${dbuser}:${password}@cluster0.4u8fy.mongodb.net/seefood?retryWrites=true&w=majority`;
+const mongoURI = `mongodb+srv://${dbuser}:${password}@cluster0.4u8fy.mongodb.net/seefood?retryWrites=true&w=majority`;
 
 
 mongoose.connect(mongoURI, {
