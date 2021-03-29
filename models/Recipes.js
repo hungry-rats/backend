@@ -4,10 +4,10 @@ const Recipes = new mongoose.Schema({
 	title: String,
 	author: String,
 	inspiredBy: String,
-	allergies: String,
+	allergies: [String],
 	likes: Number,
 	image: String,
-	ingredients: [
+	information: [
 		{
 			name: String,
 			ingredients: [String],

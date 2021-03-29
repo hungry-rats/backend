@@ -3,7 +3,7 @@
         "title": "Bachelor Chow",
         "inspiredBy": "Futurama",
         "image": "https://images.squarespace-cdn.com/content/v1/590be7fd15d5dbc6bf3e22d0/1611679074848-B8JEMT1MTXRXP9RUNJEH/ke17ZwdGBToddI8pDm48kBOthgiqgVBR-96Q3yEVzSt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0l6CcKX1G46X6yZteoeCRn_QheoGmMTFzEN8raAzG4fC-eBs4904tS0p89qslH4Obg/Screen+Shot+2021-01-26+at+10.37.15+AM.png?format=1000w",
-        "ingredients": [
+        "information": [
             {
                 "name": "Bachelor Chow",
                 "ingredients": ["4 pounds boneless beef chuck", "1 pound salt pork", "½ tsp kosher salt", "½ tsp freshly ground black pepper", "2 Tbsp unsalted butter", "5 tsp unflavored powder gelatin", "4 cups homemade beef broth ", "2 onions, cut into eighths", "4 carrots, peeled and roughly chopped", "2 celery ribs, roughly chopped","1 Tbsp tomato paste", "1 tsp anchovy paste", "⅓ cup all-purpose flour","1 garlic head, peeled", "2 bay leaves", "½ tsp black peppercorns","½ ounce dried porcini mushrooms", "10 sprigs fresh parsley", "6 sprigs fresh thyme","2 sprigs fresh rosemary", "750 milliliters (1 bottle) Burgundy wine", "Optional: 1-2 cups boiling water"],
@@ -15,7 +15,7 @@
         "title": "Dutch Baby",
         "inspiredBy": "Bob's Burgers",
         "image": "https://images.squarespace-cdn.com/content/v1/590be7fd15d5dbc6bf3e22d0/1546534075618-XO0TVQW1XX340990UI3K/ke17ZwdGBToddI8pDm48kH9tAV2A7HF4wPtNAYiaLf97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UXSC6C2jKr_lk3BlyXYV5Kp3Giwa6klZuTncD6NltiFaH3bqxw7fF48mhrq5Ulr0Hg/Screen+Shot+2019-01-03+at+10.47.33+AM.png?format=1500w",
-        "ingredients": [
+        "information": [
             {
                 "name": "Dutch Baby",
                 "ingredients": ["3 eggs", "½ cup flour", "½ cup milk", "1 Tbsp sugar", "¾ cup butter, divided", "½ cup sugar", "1 ½ tsp cinnamon", "1-2 Tbsp molasses", "1 cup powdered sugar", "2 Tbsp half and half"],
