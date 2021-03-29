@@ -1,10 +1,15 @@
-const mongoose = require('./connection')
-const Test = require('../models/Test')
-const testData = require('./Test.json')
+const mongoose = require('./connection');
 
-Test.deleteMany({})
-    .then(() => Test.insertMany(testData))
-    .catch(console.error)
-    .finally(() => {
-        process.exit
-    })
+const Recipes = require('../models/Recipes');
+
+const Data = require('./seeds.json');
+
+Recipes.deleteMany({})
+
+	.then(() => Recipes.insertMany(Data))
+
+	.catch(console.error)
+
+	.finally(() => {
+		process.exit;
+	});
