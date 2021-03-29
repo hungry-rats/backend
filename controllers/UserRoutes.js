@@ -19,6 +19,7 @@ router.get('/:id', (req, res, next) => {
 		})
 		.catch(next);
 });
+
 //POST creates user
 router.post('/', (req, res, next) => {
 	User.create(req.body)

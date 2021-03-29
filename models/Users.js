@@ -1,18 +1,12 @@
 const mongoose = require('../db/connection');
-const Recipes = require('./Recipes')
-
+const Recipes = require('./Recipes').schema
 const bcrypt = require('bcrypt')
 
 const Users = new mongoose.Schema({
     username: {type:String, unique:true},
     email: {type:String, required:true, unique:true},
     password: {type:String, required:true}, 
-    recipes: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Recipes'
-        }
-    ]
+    recipes: [Recipes]
 })
 
 Users.methods.matchPassword = async function (enteredPassword) {
