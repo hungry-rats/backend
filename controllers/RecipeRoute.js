@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 
 //GET by id
 router.get('/:id', (req, res, next) => {
-	Recipe.findById(req.params.id)
+	Recipe.findById({ _id: req.params.id })
 		.then((recipe) => {
 			res.json(recipe);
 		})
@@ -22,7 +22,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 //POST creates recipe
-router.post('/:id', (req, res, next) => {
+router.post('/', (req, res, next) => {
 	Recipe.create(req.body)
 		.then((recipe) => res.json(recipe))
 		.catch(next);
@@ -30,7 +30,7 @@ router.post('/:id', (req, res, next) => {
 
 //PUT updates
 router.put('/:id', (req, res, next) => {
-	Recipe.findOneAndUpdate(req.params.id, req.body, { new: true })
+	Recipe.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
 		.then((recipe) => res.json(recipe))
 		.catch(next);
 });
