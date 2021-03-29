@@ -1,9 +1,21 @@
 const mongoose = require('../db/connection');
 
-const Recipe = new mongoose.Schema({
-	test: String,
+const Recipes = new mongoose.Schema({
+	title: String,
+	author: String,
+	inspiredBy: String,
+	allergies: String,
+	likes: Number,
+	image: String,
+	ingredients: [
+		{
+			name: String,
+			ingredients: [String],
+			directions: [String],
+		},
+	],
 });
 
-const RecipeModel = mongoose.model('Recipe', Recipe);
+const RecipeModel = mongoose.model('Recipes', Recipes);
 
 module.exports = RecipeModel;
