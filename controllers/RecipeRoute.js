@@ -34,11 +34,11 @@ router.get('/recipes/:Id', (req, res, next) => {
 
 //POST creates recipe
 router.post('/users/:userId/recipes/create', (req, res, next) => {
-
 	Recipe.create(req.body)
 		.then(newRecipe => {
 			User.findOneAndUpdate(
-				req.params.userId,
+				
+				{ _id: req.params.userId},
 				{ $push: {recipes: newRecipe } },
 				{ new: true }
 			)
