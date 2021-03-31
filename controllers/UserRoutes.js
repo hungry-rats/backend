@@ -1,5 +1,5 @@
-import express from 'express'
-import User from '../models/Users'
+const express = require('express')
+const User = require('../models/Users')
 const router = express.Router()
 
 // GET all users
@@ -19,11 +19,19 @@ router.get('/:id', (req, res, next) => {
 		})
 		.catch(next);
 });
+
 //POST creates user
-router.post('/', (req, res, next) => {
+router.post('/create', (req, res, next) => {
 	User.create(req.body)
 		.then((user) => res.json(user))
 		.catch(next);
+});
+
+//DELETE
+router.delete('/:id', (req, res, next) => {
+	User.findByIdAndDelete(req.params.id).then((user) => {
+		res.json(user).catch(next);
+	});
 });
 
 module.exports = router

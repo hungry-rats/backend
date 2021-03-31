@@ -1,11 +1,11 @@
 const mongoose = require('../db/connection');
-const Recipes = require('../models/Recipes')
-import bcrypt from 'bcryptjs'
+const Recipes = require('./Recipes').schema
+const bcrypt = require('bcrypt')
 
 const Users = new mongoose.Schema({
     username: {type:String, unique:true},
     email: {type:String, required:true, unique:true},
-    password: {type:String}, 
+    password: {type:String, required:true}, 
     recipes: [Recipes]
 })
 

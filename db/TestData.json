@@ -1,0 +1,15 @@
+[
+    {
+        "username": "Bubba",
+        "email": "test@test.com",
+        "password": "Mycoolpassword",
+        "recipes": 
+[
+    {
+        "title": "Bachelor Chow",
+        "inspiredBy": "Futurama",
+        "image": "https://images.squarespace-cdn.com/content/v1/590be7fd15d5dbc6bf3e22d0/1611679074848-B8JEMT1MTXRXP9RUNJEH/ke17ZwdGBToddI8pDm48kBOthgiqgVBR-96Q3yEVzSt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0l6CcKX1G46X6yZteoeCRn_QheoGmMTFzEN8raAzG4fC-eBs4904tS0p89qslH4Obg/Screen+Shot+2021-01-26+at+10.37.15+AM.png?format=1000w"
+    }
+]
+    }
+]
