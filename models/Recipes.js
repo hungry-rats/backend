@@ -1,4 +1,5 @@
 const mongoose = require('../db/connection');
+const Comment = require('./Comments').Comments
 
 const Recipes = new mongoose.Schema({
 	title: String,
@@ -7,6 +8,7 @@ const Recipes = new mongoose.Schema({
 	allergies: [String],
 	likes: Number,
 	image: String,
+	comments:[Comment],
 	information: [
 		{
 			name: String,

@@ -1,15 +1,19 @@
-import express from 'express';
-import User from '../models/Users';
+const express = require('express');
 const router = express.Router();
-const Comment = require('')
+const Comment = require('../models/Comments');
+const Recipe = require('../models/Recipes');
 
 // GET all users
-router.get('/', (req, res, next) => {
-	Comment.find({})
-		.then((comments) => {
-			res.json(comments);
-		})
-		.catch(next);
+router.get('/:recipeId/comments', (req, res, next) => {
+	Recipe.findById({ _id: req.params.recipeId }).then((recipe) =>
+		res.json(recipe.comments)
+	);
+
+	// Comment.find({})
+	// 	.then((comments) => {
+	// 		res.json(comments);
+	// 	})
+	// 	.catch(next);
 });
 
 //POST creates user
