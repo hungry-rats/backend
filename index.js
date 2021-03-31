@@ -9,7 +9,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //Recipes Routes
 const RecipeRoutes = require('./controllers/RecipeRoute')
-app.use('/seefood',RecipeRoutes)
+app.use('/',RecipeRoutes)
+
+const UserRoutes = require('./controllers/UserRoutes');
+app.use('/users', UserRoutes);
 
 dotenv.config();
 app.set('port', /* process.env.PORT ||  */8000);
