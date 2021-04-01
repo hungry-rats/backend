@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Recipe = require('../models/Recipes');
-const User = require('../models/Users')
+const User = require('../models/Users').UsersModel
 
 
 //GET all recipes
@@ -38,7 +38,7 @@ router.post('/users/:userId/recipes/create', (req, res, next) => {
 	Recipe.create(req.body)
 		.then(newRecipe => {
 			User.findOneAndUpdate(
-				req.params.userId,
+				{_id:req.params.userId},
 				{ $push: {recipes: newRecipe } },
 				{ new: true }
 			)

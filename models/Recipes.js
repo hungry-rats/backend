@@ -8,7 +8,7 @@ const Recipes = new mongoose.Schema({
 	allergies: [String],
 	likes: Number,
 	image: String,
-	comments:[Comment],
+	comments: [Comment],
 	information: [
 		{
 			name: String,
