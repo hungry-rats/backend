@@ -11,8 +11,13 @@ app.use(express.urlencoded({ extended: true }));
 const RecipeRoutes = require('./controllers/RecipeRoute')
 app.use('/',RecipeRoutes)
 
+//User Routes
 const UserRoutes = require('./controllers/UserRoutes');
 app.use('/users', UserRoutes);
+
+//Comments Route
+const CommentRoutes = require('./controllers/CommentRoute')
+app.use('/',CommentRoutes)
 
 dotenv.config();
 app.set('port', /* process.env.PORT ||  */8000);
