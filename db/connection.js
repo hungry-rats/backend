@@ -1,9 +1,6 @@
 const mongoose = require('mongoose')
 
-const dbuser = 'seefood-user';
-const password = 'SWvYN1mfRljRubs9';
-
-const mongoURI = `mongodb+srv://${dbuser}:${password}@cluster0.4u8fy.mongodb.net/seefood?retryWrites=true&w=majority`;
+const mongoURI = process.env.DB_URL
 
 mongoose
 	.connect(mongoURI, {
