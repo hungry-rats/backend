@@ -24,4 +24,4 @@ Users.pre("save", async function (next) {
 
 const UsersModel = mongoose.model('User', Users)
 
-module.exports = UsersModel
+module.exports = {UsersModel,Users}

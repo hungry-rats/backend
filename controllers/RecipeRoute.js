@@ -13,18 +13,8 @@ const {
 	requireToken
 } = require('../middleware/auth');
 
-
-// const authenticateToken = (req, res, next) => {
-// 	const authHeader = req.headers['authorization'];
-// 	const token = authHeader && authHeader.split(' ')[1];
-// 	if (token == null) return res.sendStatus(419);
-
-// 	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-// 		if (err) return res.sendStatus(403);
-// 		req.user = user;
-// 		next();
-// 	});
-// };
+// Josmar model (testing to see if one on line 6 works)
+// const User = require('../models/Users').UsersModel
 
 
 // GET all recipes
@@ -128,49 +118,6 @@ router.post('/signin', (req, res, next) => {
 
 
 
-// router.post('/login', (req, res, next) => {
-// 	const username = req.body.username
-// 	const password = req.body.password
-// 	let data;
-// 	let userId;
-
-// 	const user = {
-// 		name: username
-// 	}
-
-// 	if (username.length > 0 && password.length > 0) {
-// 		data = {
-// 			username: username
-// 		}
-// 	} else {
-// 		res.json({
-// 			status: 0,
-// 			message: 'err'
-// 		})
-// 	}
-
-// 	User.findOne(data, (err, user, res) => {
-// 			userId = user._id
-
-// 			bcrypt.compare(req.body.password, user.password, (err, res) => {
-// 				if (err) {
-// 					console.log('error')
-// 				} else if (!res) {
-// 					console.log('wrong password')
-// 				} else {
-// 					console.log(userId)
-// 				}
-// 			})
-// 		})
-// 		.then(() => {
-// 			const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-// 			res.json({
-// 				accessToken: accessToken,
-// 				userId: userId
-// 			});
-// 		})
-// 		.catch(console.error)
-// });
 
 
 
