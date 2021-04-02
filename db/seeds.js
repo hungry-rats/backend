@@ -12,9 +12,9 @@ Recipes.deleteMany({})
 	process.exit;
 	});
 
-Users.deleteMany({})
-		.then(() => Users.insertMany(TestData))
-		.catch(console.error)
-		.finally(() => {
-		process.exit;
-	});
+// Users.deleteMany({})
+// 		.then(() => Users.insertMany(TestData))
+// 		.catch(console.error)
+// 		.finally(() => {
+// 		process.exit;
+// 	});

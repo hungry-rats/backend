@@ -3,12 +3,16 @@ const Comment = require('./Comments').Comments
 
 const Recipes = new mongoose.Schema({
 	title: String,
-	author: String,
+	author: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		required: true,
+	},
 	inspiredBy: String,
 	allergies: [String],
 	likes: Number,
 	image: String,
-	comments:[Comment],
+	comments: [Comment],
 	information: [
 		{
 			name: String,

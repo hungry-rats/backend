@@ -17,6 +17,13 @@ app.use('/users', UserRoutes);
 dotenv.config();
 app.set('port', /* process.env.PORT ||  */8000);
 
+// Require the error handlers
+const { handleErrors, handleValidationErrors } = require('./middleware/custom_errors');
+app.use(handleValidationErrors);
+// The catch all for handling errors
+// MUST BE PLACED IMMEDIATELY BEFORE `app.listen`
+app.use(handleErrors)
+
 app.listen(app.get('port'), () => {
 	console.log(`PORT: ${app.get('port')}`);
 });
