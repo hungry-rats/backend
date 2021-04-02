@@ -18,3 +18,4 @@ Users.deleteMany({})
 		.finally(() => {
 		process.exit;
 	});
+

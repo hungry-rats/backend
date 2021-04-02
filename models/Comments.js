@@ -2,12 +2,13 @@ const mongoose = require('../db/connection')
 // const Users = require('./Users').Users
 
 const Comments = new mongoose.Schema({
-	post:String,
+
+	post: String,
 	timeOfPost: { type: Date, default: Date.now },
 	author: {
-		type: mongoose.Types.ObjectId,
-		ref: 'User',
-	},
+	    type: mongoose.Schema.Types.ObjectId,
+	    ref: 'User'
+	}
 });
 
 const CommentsModel = mongoose.model('Comments', Comments)
