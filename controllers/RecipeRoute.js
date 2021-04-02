@@ -3,7 +3,7 @@ require('dotenv').config()
 const express = require('express');
 const router = express.Router();
 const Recipe = require('../models/Recipes');
-const User = require('../models/Users')
+// const User = require('../models/Users')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {
@@ -14,7 +14,7 @@ const {
 } = require('../middleware/auth');
 
 // Josmar model (testing to see if one on line 6 works)
-// const User = require('../models/Users').UsersModel
+const User = require('../models/Users').UsersModel
 
 
 // GET all recipes
