@@ -1,6 +1,7 @@
 const express = require('express')
-const User = require('../models/Users')
+const User = require('../models/Users').UsersModel
 const router = express.Router()
+const bcrypt = require('bcrypt');
 
 // GET all users
 router.get('/', (req, res, next) => {
@@ -21,7 +22,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 //POST creates user
-router.post('/create', (req, res, next) => {
+router.post('/create', async (req, res, next) => {
 	User.create(req.body)
 		.then((user) => res.json(user))
 		.catch(next);
@@ -33,5 +34,7 @@ router.delete('/:id', (req, res, next) => {
 		res.json(user).catch(next);
 	});
 });
+
+
 
 module.exports = router

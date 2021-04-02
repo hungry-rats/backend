@@ -11,11 +11,23 @@ app.use(express.urlencoded({ extended: true }));
 const RecipeRoutes = require('./controllers/RecipeRoute')
 app.use('/',RecipeRoutes)
 
+//User Routes
 const UserRoutes = require('./controllers/UserRoutes');
 app.use('/users', UserRoutes);
 
+//Comments Route
+const CommentRoutes = require('./controllers/CommentRoute')
+app.use('/',CommentRoutes)
+
 dotenv.config();
 app.set('port', /* process.env.PORT ||  */8000);
+
+// Require the error handlers
+const { handleErrors, handleValidationErrors } = require('./middleware/custom_errors');
+app.use(handleValidationErrors);
+// The catch all for handling errors
+// MUST BE PLACED IMMEDIATELY BEFORE `app.listen`
+app.use(handleErrors)
 
 app.listen(app.get('port'), () => {
 	console.log(`PORT: ${app.get('port')}`);
