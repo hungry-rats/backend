@@ -43,6 +43,7 @@ router.get('/recipes', (req, res, next) => {
 
 
 // GET all User recipes
+// FINAL PRODUCT
 router.get('/users/recipes', requireToken, (req, res, next) => {
 	// console.log(req.params);
 
@@ -66,6 +67,7 @@ router.get('/recipes/:Id', (req, res, next) => {
 });
 
 //POST creates recipe
+// FINAL PRODUCT
 router.post('/recipes', requireToken, (req, res, next) => {
 	const newRecipe = {
 		...req.body,
@@ -93,6 +95,7 @@ router.put('/recipes/:id', (req, res, next) => {
 });
 
 //DELETE
+// FINAL PRODUCT
 router.delete('/recipes/:id', requireToken, (req, res, next) => {
 	Recipe.findById(req.params.id)
 		.then((recipe) => {
