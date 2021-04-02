@@ -53,7 +53,7 @@ class InvalidIdError extends Error {
 }
 
 const handleValidateOwnership = (req, document) => {
-	const ownerId = document.owner._id || document.owner;
+	const ownerId = document.author._id || document.author;
 	// Check if the current user is also the owner of the document
 	if (!req.user._id.equals(ownerId)) {
 		throw new OwnershipError();

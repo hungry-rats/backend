@@ -1,17 +1,17 @@
 require('dotenv').config()
 
 const express = require('express');
+const mongoose = require('mongoose')
 const router = express.Router();
 const Recipe = require('../models/Recipes');
 const User = require('../models/Users')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {
+	requireToken,
 	createUserToken
 } = require('../middleware/auth');
-const {
-	requireToken
-} = require('../middleware/auth');
+const { handleValidateOwnership } = require('../middleware/custom_errors');
 
 // Josmar model (testing to see if one on line 6 works)
 // const User = require('../models/Users').UsersModel
@@ -43,14 +43,14 @@ router.get('/recipes', (req, res, next) => {
 
 
 // GET all User recipes
-router.get('/Users/:userId/recipes', (req, res, next) => {
+router.get('/users/recipes', requireToken, (req, res, next) => {
 	// console.log(req.params);
 
-	User.findById({
-		_id: req.params.userId
-	}).then((user) => {
-		res.json(user.recipes);
-	});
+	Recipe.find({ author: mongoose.Types.ObjectId(req.user._id)})
+	.then(recipes => {
+		res.json(recipes);
+	})
+	.catch(next)
 });
 
 //GET by id
@@ -72,13 +72,13 @@ router.post('/recipes', requireToken, (req, res, next) => {
 		author: req.user._id,
 	}
 	Recipe.create(newRecipe)
-		.then((newRecipe) => {
-			return Recipe.findById(newRecipe._id)
+	.then((newRecipe) => {
+		return Recipe.findById(newRecipe._id).populate('author', 'username')
 		})
-		.then(newRecipe => {
+		.then((newRecipe) => {
 			res.json(newRecipe);
 		})
-		.catch(next)
+		.catch(next);
 });
 
 //PUT updates
@@ -93,10 +93,18 @@ router.put('/recipes/:id', (req, res, next) => {
 });
 
 //DELETE
-router.delete('/recipes/:id', (req, res, next) => {
-	Recipe.findByIdAndDelete(req.params.id).then((recipe) => {
-		res.json(recipe).catch(next);
-	});
+router.delete('/recipes/:id', requireToken, (req, res, next) => {
+	Recipe.findById(req.params.id)
+		.then((recipe) => {
+			return handleValidateOwnership(req, recipe)
+		})
+		.then((recipe) => {
+			recipe.deleteOne()
+		})
+		.then(() => {
+			res.sendStatus(204)
+		})
+		.catch(next)
 });
 
 //LOGIN AUTHORIZATION
