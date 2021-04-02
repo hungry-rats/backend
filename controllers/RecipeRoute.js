@@ -12,24 +12,12 @@ const {
 const {
 	requireToken
 } = require('../middleware/auth');
-
-
-// const authenticateToken = (req, res, next) => {
-// 	const authHeader = req.headers['authorization'];
-// 	const token = authHeader && authHeader.split(' ')[1];
-// 	if (token == null) return res.sendStatus(419);
-
-// 	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-// 		if (err) return res.sendStatus(403);
-// 		req.user = user;
-// 		next();
-// 	});
-// };
-
+// const User = require('../models/Users').UserSchema
 
 // GET all recipes
 router.get('/recipes', (req, res, next) => {
 	Recipe.find({})
+		.populate('author', "username")
 		.then((recipes) => {
 			res.json(recipes);
 		})
@@ -37,24 +25,8 @@ router.get('/recipes', (req, res, next) => {
 })
 
 
-//TESTING
-// router.get('/recipes', authenticateToken, (req, res, next) => {
-// 	const recipes = Recipe.find({});
-// 	console.log(recipes.path);
-// 	res.json(recipes.filter((recipe) => recipe.username === req.user.name));
-
-// Recipe.find({})
-// 	.then((recipes) => {
-// 		res.json(recipes);
-// 	})
-// 	.catch(next);
-// });
-
-
 // GET all User recipes
 router.get('/Users/:userId/recipes', (req, res, next) => {
-	// console.log(req.params);
-
 	User.findById({
 		_id: req.params.userId
 	}).then((user) => {
@@ -81,7 +53,7 @@ router.post('/recipes', requireToken, (req, res, next) => {
 		author: req.user._id,
 	}
 	Recipe.create(newRecipe)
-		.populate('author', 'username')
+		// .populate('author', 'username')
 		.then(newRecipe => {
 			res.json(newRecipe);
 		})
