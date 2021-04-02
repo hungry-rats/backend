@@ -20,6 +20,7 @@ const {
 // GET all recipes
 router.get('/recipes', (req, res, next) => {
 	Recipe.find({})
+		.populate('author', 'username')
 		.then((recipes) => {
 			res.json(recipes);
 		})
@@ -71,7 +72,9 @@ router.post('/recipes', requireToken, (req, res, next) => {
 		author: req.user._id,
 	}
 	Recipe.create(newRecipe)
-		.populate('author', 'username')
+		.then((newRecipe) => {
+			return Recipe.findById(newRecipe._id)
+		})
 		.then(newRecipe => {
 			res.json(newRecipe);
 		})
