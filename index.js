@@ -20,7 +20,7 @@ const CommentRoutes = require('./controllers/CommentRoute')
 app.use('/',CommentRoutes)
 
 dotenv.config();
-app.set('port', /*process.env.PORT ||*/ 8000);
+app.set('port', process.env.PORT || 8000);
 
 // Require the error handlers
 const { handleErrors, handleValidationErrors } = require('./middleware/custom_errors');
