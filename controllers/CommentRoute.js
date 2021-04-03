@@ -4,6 +4,7 @@ const Comment = require('../models/Comments').CommentsModel;
 const Recipe = require('../models/Recipes');
 const mongoose = require('mongoose')
 const toId = mongoose.Types.ObjectId
+const { requireToken, createUserToken } = require('../middleware/auth');
 
 
 // GET all recipe comments
@@ -15,28 +16,53 @@ router.get('/:recipeId/comments', (req, res, next) => {
 });
 
 //POST creates comment on recipe
-router.post('/:userId/:recipeId/comments/create', (req, res, next) => {
-	Comment.create(req.body)
-		.then((comment) => {
-			userObjectId = toId(req.params.userId);
-			comment.author = userObjectId;
+// router.post('/:userId/:recipeId/comments/create', (req, res, next) => {
+// 	Comment.create(req.body)
+// 		.then((comment) => {
+// 			userObjectId = toId(req.params.userId);
+// 			comment.author = userObjectId;
 
-			return comment.save()
+// 			return comment.save()
+// 		})
+// 		.then(comment => {
+// 			console.log(comment);
+// 			Recipe.findById({_id:req.params.recipeId})
+// 				.then((recipe) => {
+// 					recipe.comments.push(comment);
+// 					return recipe.save()
+// 				})
+// 				.then(added => {
+// 					res.json(added)
+// 				})
+// 				.catch(next)
+// 		})
+// 		.catch(next)
+// });
+
+// USER POST COMMENT TO RECIPE
+// FINAL PRODUCT
+router.post('/:recipeId/comments/create', requireToken, (req, res, next) => {
+	const newComment = {
+		...req.body,
+		author: req.user._id
+	}
+	Comment.create(newComment)
+		.then((newComment) => {
+			return Comment.findById(newComment._id).populate('author', 'username');
 		})
-		.then(comment => {
-			console.log(comment);
-			Recipe.findById({_id:req.params.recipeId})
+		.then((newComment) => {
+			Recipe.findById({ _id: req.params.recipeId })
 				.then((recipe) => {
-					recipe.comments.push(comment);
-					return recipe.save()
+					// console.log(recipe);
+					// console.log(newComment);
+					recipe.comments.push(newComment)
+					return recipe.save();
 				})
-				.then(added => {
-					res.json(added)
+				.then((recipe) => {
+					res.json(recipe);
 				})
-				.catch(next)
-		})
-		.catch(next)
-});
+				.catch(next);
+		});})
 
 //PUT updates
 router.put('/comments/:id/edit', (req, res, next) => {
