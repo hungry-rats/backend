@@ -54,8 +54,6 @@ router.post('/:recipeId/comments/create', requireToken, (req, res, next) => {
 		.then((newComment) => {
 			Recipe.findById({ _id: req.params.recipeId })
 				.then((recipe) => {
-					// console.log(recipe);
-					// console.log(newComment);
 					recipe.comments.push(newComment)
 					return recipe.save();
 				})
@@ -69,16 +67,23 @@ router.post('/:recipeId/comments/create', requireToken, (req, res, next) => {
 router.put('/:recipeId/comments/:commentId/edit',requireToken, (req, res, next) => {
 	Comment.findById(req.params.commentId)
 		.then((comment) => {
-			console.log(comment);
 			return handleValidateOwnership(req, comment);
 		})
 		.then((comment) => {
-			// comment.post = req.body.post;
-			// return comment.save();
+			comment.post = req.body.post;
+			return comment.save();
 		})
-		.then(() => {
-			Recipe.findOne()
-
+		.then((comment) => {
+			Recipe.findById({_id:req.params.recipeId})
+				.then( (recipe) => {
+					recipe.comments.forEach(async(rComment) => {
+						if (rComment._id.toString() == comment._id.toString()) {
+							console.log(rComment);
+							rComment.post = comment.post;
+							await recipe.save();
+						}
+					})
+				})
 			res.sendStatus(202);
 		})
 		.catch(next);
