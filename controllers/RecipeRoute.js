@@ -83,14 +83,33 @@ router.post('/recipes', requireToken, (req, res, next) => {
 		.catch(next);
 });
 
-//PUT updates
-router.put('/recipes/:id', (req, res, next) => {
-	Recipe.findOneAndUpdate({
-			_id: req.params.id
-		}, req.body, {
-			new: true
+//PUT updates a recipe
+// FINAL PRODUCT
+router.put('/recipes/:id/edit',requireToken, (req, res, next) => {
+	Recipe.findById(req.params.id)
+		.then((recipe) => {
+			return handleValidateOwnership(req, recipe);
 		})
-		.then((recipe) => res.json(recipe))
+		.then((recipe) => {
+			if (req.body.title) {
+				recipe.title = req.body.title;
+			} else if (req.body.inspiredBy) {
+				recipe.inspiredBy = req.body.inspiredBy;
+			} else if (req.body.image) {
+				recipe.image = req.body.image;
+			} else if (req.body.directions) {
+				recipe.directions = req.body.directions;
+			} else if (req.body.allergies) {
+				recipe.allergies = req.body.allergies;
+			} else if (req.body.ingredients) {
+				recipe.ingredients = req.body.ingredients;
+			}
+
+			recipe.save()
+		})
+		.then(() => {
+			res.sendStatus(202);
+		})
 		.catch(next);
 });
 

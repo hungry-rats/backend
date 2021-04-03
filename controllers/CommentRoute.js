@@ -5,6 +5,7 @@ const Recipe = require('../models/Recipes');
 const mongoose = require('mongoose')
 const toId = mongoose.Types.ObjectId
 const { requireToken, createUserToken } = require('../middleware/auth');
+const {handleValidateOwnership} = require('../middleware/custom_errors')
 
 
 // GET all recipe comments
@@ -53,8 +54,6 @@ router.post('/:recipeId/comments/create', requireToken, (req, res, next) => {
 		.then((newComment) => {
 			Recipe.findById({ _id: req.params.recipeId })
 				.then((recipe) => {
-					// console.log(recipe);
-					// console.log(newComment);
 					recipe.comments.push(newComment)
 					return recipe.save();
 				})
@@ -65,18 +64,43 @@ router.post('/:recipeId/comments/create', requireToken, (req, res, next) => {
 		});})
 
 //PUT updates
-router.put('/comments/:id/edit', (req, res, next) => {
-	Comment.findByIdAndUpdate({ _id: req.params.id }).then((comment) => {
-		console.log(comment);
-		Recipe.findOne({ 'comments._id': req.params.id })
-			.then((recipe) => {
-				recipe.comments.id(req.params.id).post = req.body.post;
-				return recipe.save();
-			})
-			.then(() => {
-				res.sendStatus(204);
-			});
-	});
+router.put('/:recipeId/comments/:commentId/edit',requireToken, (req, res, next) => {
+	Comment.findById(req.params.commentId)
+		.then((comment) => {
+			return handleValidateOwnership(req, comment);
+		})
+		.then((comment) => {
+			comment.post = req.body.post;
+			return comment.save();
+		})
+		.then((comment) => {
+			Recipe.findById({_id:req.params.recipeId})
+				.then( (recipe) => {
+					recipe.comments.forEach(async(rComment) => {
+						if (rComment._id.toString() == comment._id.toString()) {
+							console.log(rComment);
+							rComment.post = comment.post;
+							await recipe.save();
+						}
+					})
+				})
+			res.sendStatus(202);
+		})
+		.catch(next);
+
+
+
+
+	// Comment.findByIdAndUpdate({ _id: req.params.id }).then((comment) => {
+	// 	console.log(comment);
+	// 	Recipe.findOne({ 'comments._id': req.params.id })
+	// 		.then((recipe) => {
+	// 			
+	// 		})
+	// 		.then(() => {
+	// 			res.sendStatus(204);
+	// 		});
+	// });
 });
 
 //DELETE
