@@ -13,13 +13,8 @@ const Recipes = new mongoose.Schema({
 	likes: Number,
 	image: String,
 	comments: [Comment],
-	information: [
-		{
-			name: String,
-			ingredients: [String],
-			directions: [String],
-		},
-	],
+	ingredients: { type: [String], default: 'null' },
+	directions: { type: [String], default: 'null' },
 });
 
 const RecipeModel = mongoose.model('Recipes', Recipes);
