@@ -94,13 +94,14 @@ router.delete(
 	'/:recipeId/comments/:commentId/delete',
 	requireToken,
 	(req, res, next) => {
-		Comment.findByIdAndDelete(req.params.commentId)
+		Comment.findById(req.params.commentId)
 			.then((comment) => {
 				return handleValidateOwnership(req, comment);
 			})
 			.then(() => {
-				Comment.findById(req.params.commentId).then((comment) => {
+				Comment.findByIdAndDelete(req.params.commentId).then((comment) => {
 					Recipe.findById(req.params.recipeId).then((recipe) => {
+
 						recipe.comments.forEach(async (rComment, index) => {
 							if (rComment._id.toString() == comment._id.toString()) {
 								recipe.comments.splice(index, 1);
@@ -110,7 +111,9 @@ router.delete(
 						});
 					});
 				});
-			});
+			})
+			.then(() => res.status(201))
+			.catch(next)
 
 		//old version
 
