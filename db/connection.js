@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
-const mongoURI = process.env.DB_URL
+const mongoURI =
+	'mongodb+srv://qwerty:keRXPU4ftCLylucl@cluster0.4u8fy.mongodb.net/seefood?retryWrites=true&w=majority';
 
 mongoose
 	.connect(mongoURI, {

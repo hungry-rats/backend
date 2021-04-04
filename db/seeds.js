@@ -9,12 +9,12 @@ const Users = require('../models/Users').UsersModel
 const TestData = require('./TestData.json')
 
 
-// Recipes.deleteMany({})
-// 	.then(() => Recipes.insertMany(Data))
-// 	.catch(console.error)
-// 	.finally(() => {
-// 	process.exit;
-// 	});
+Recipes.deleteMany({})
+	.then(() => Recipes.insertMany(Data))
+	.catch(console.error)
+	.finally(() => {
+	process.exit;
+	});
 
 // Users.deleteMany({})
 // 		.then(() => Users.insertMany(Data))
