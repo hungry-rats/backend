@@ -110,7 +110,7 @@ router.delete(
 						});
 					});
 				});
-			});
+			})
 
 		//old version
 

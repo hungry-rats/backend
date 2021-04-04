@@ -1,8 +1,10 @@
 const mongoose = require('../db/connection');
 // const Users = require('./Users').Users
+// const Recipes = require('./Recipes')
 
 const Comments = new mongoose.Schema({
 	post: String,
+	recipeId: String,
 	timeOfPost: { type: Date, default: Date.now },
 	author: {
 		type: mongoose.Schema.Types.ObjectId,
