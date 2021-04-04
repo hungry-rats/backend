@@ -1,6 +1,6 @@
-const express = require('express')
-const User = require('../models/Users')
-const router = express.Router()
+const express = require('express');
+const User = require('../models/Users');
+const router = express.Router();
 const bcrypt = require('bcrypt');
 
 // GET all users
@@ -35,6 +35,4 @@ router.delete('/:id', (req, res, next) => {
 	});
 });
 
-
-
-module.exports = router
+module.exports = router;
