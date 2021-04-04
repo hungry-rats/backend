@@ -17,6 +17,6 @@ const Recipes = new mongoose.Schema({
 	directions: { type: [String], default: 'null' },
 });
 
-const RecipeModel = mongoose.model('Recipes', Recipes);
+const RecipeModel = mongoose.model('Recipe', Recipes);
 
 module.exports = RecipeModel;
