@@ -101,7 +101,6 @@ router.delete(
 			.then(() => {
 				Comment.findByIdAndDelete(req.params.commentId).then((comment) => {
 					Recipe.findById(req.params.recipeId).then((recipe) => {
-
 						recipe.comments.forEach(async (rComment, index) => {
 							if (rComment._id.toString() == comment._id.toString()) {
 								recipe.comments.splice(index, 1);
@@ -113,7 +112,7 @@ router.delete(
 				});
 			})
 			.then(() => res.status(201))
-			.catch(next)
+			.catch(next);
 
 		//old version
 
