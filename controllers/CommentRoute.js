@@ -111,18 +111,6 @@ router.delete(
 					});
 				});
 			})
-			// .then(() => {
-			// 	Comment.findById(req.params.commentId).then((comment) => {
-			// 		User.findById(req.params.userId).then((user) => {
-			// 			user.comments.forEach(async (rComment, index) => {
-			// 				if (rComment._id.toString() == comment._id.toString()) {
-			// 					user.comments.splice(index, 1);
-			// 					await user.save();
-			// 				}
-			// 			});
-			// 		});
-			// 	});
-			// });
 
 		//old version
 
