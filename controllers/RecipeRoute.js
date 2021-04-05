@@ -5,13 +5,8 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Recipe = require('../models/Recipes');
 const User = require('../models/Users');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const { requireToken, createUserToken } = require('../middleware/auth');
 const { handleValidateOwnership } = require('../middleware/custom_errors');
-
-// Josmar model (testing to see if one on line 6 works)
-// const User = require('../models/Users').UsersModel
 
 // GET all recipes
 router.get('/recipes', (req, res, next) => {
@@ -23,24 +18,9 @@ router.get('/recipes', (req, res, next) => {
 		.catch(next);
 });
 
-//TESTING
-// router.get('/recipes', authenticateToken, (req, res, next) => {
-// 	const recipes = Recipe.find({});
-// 	console.log(recipes.path);
-// 	res.json(recipes.filter((recipe) => recipe.username === req.user.name));
-
-// Recipe.find({})
-// 	.then((recipes) => {
-// 		res.json(recipes);
-// 	})
-// 	.catch(next);
-// });
-
 // GET all User recipes
 // FINAL PRODUCT
 router.get('/users/recipes', requireToken, (req, res, next) => {
-	// console.log(req.params);
-
 	Recipe.find({ author: mongoose.Types.ObjectId(req.user._id) })
 		.then((recipes) => {
 			res.json(recipes);
@@ -130,11 +110,7 @@ router.post('/signin', (req, res, next) => {
 	User.findOne({
 		username: req.body.username,
 	})
-		// Pass the user and the request to createUserToken
 		.then((user) => createUserToken(req, user))
-		// createUserToken will either throw an error that
-		// will be caught by our error handler or send back
-		// a token that we'll in turn send to the client.
 		.then((token) =>
 			res.json({
 				token,
