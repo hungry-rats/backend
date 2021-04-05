@@ -1,7 +1,7 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const User = require('../models/Users');
 const router = express.Router();
-const bcrypt = require('bcrypt');
 
 // GET all users
 router.get('/', (req, res, next) => {

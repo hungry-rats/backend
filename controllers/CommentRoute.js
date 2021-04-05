@@ -1,13 +1,13 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 const Comment = require('../models/Comments').CommentsModel;
 const Recipe = require('../models/Recipes');
-const mongoose = require('mongoose');
-const { requireToken, createUserToken } = require('../middleware/auth');
+const { requireToken } = require('../middleware/auth');
 const { handleValidateOwnership } = require('../middleware/custom_errors');
 
 // GET all recipe comments
-router.get('/:recipeId/comments', (req, res, next) => {
+router.get('/:recipeId/comments', (req, res) => {
 	Recipe.findById({ _id: req.params.recipeId }).then((recipe) =>
 		res.json(recipe.comments)
 	);
@@ -15,7 +15,7 @@ router.get('/:recipeId/comments', (req, res, next) => {
 
 
 // GET current user comments
-router.get('/comments',requireToken,(req,res,next)=> {
+router.get('/comments',requireToken,(req,res)=> {
 	Comment.find({author:req.user.id})
 		.then(comments => res.json(comments))
 })
@@ -95,9 +95,9 @@ router.delete(
 	requireToken,
 	(req, res, next) => {
 		Comment.findById(req.params.commentId)
-			.then((comment) => {
-				return handleValidateOwnership(req, comment);
-			})
+		.then((comment) => {
+			return handleValidateOwnership(req, comment);
+		})
 			.then(() => {
 				Comment.findByIdAndDelete(req.params.commentId).then((comment) => {
 					Recipe.findById(req.params.recipeId).then((recipe) => {

@@ -14,5 +14,13 @@
         "ingredients": ["3 eggs", "½ cup flour", "½ cup milk", "1 Tbsp sugar", "¾ cup butter, divided", "½ cup sugar", "1 ½ tsp cinnamon", "1-2 Tbsp molasses", "1 cup powdered sugar", "2 Tbsp half and half"],
         "directions": ["In a food processor or blender combine: 3 eggs, ½ cup of flour, ½ cup milk, and 1 Tbsp sugar. Mix for about 15 seconds or until there are no chunks. Set aside.", "In a small bowl combine: ¼ cup butter, ¼ cup sugar, 1 ½ tsp cinnamon and about 1-2 Tbsp molasses. Mix until fully incorporated. Add to a piping bag and set aside.", "In another bowl combine 1 cup powdered sugar and 2 Tbsp half and half. Whisk to combine. Add more of either as needed to obtain a good drizzle-able consistency. Add to a squeeze bottle.", "On the stovetop in a pan over medium high heat, melt ½ cup butter. Once it’s nice and foamy, pour in batter. Then, using the piping bag, add your cinnamon swirl.", "Place in a preheated 425°F oven and cook for 20 minutes. Then lower the temperature to 350°F and cook for an additional 5 minutes.", "Remove from oven and drizzle with sugar glaze.", "Serve and enjoy!"],
         "author": "6067883073dea200159bec20"
+    },
+    {
+        "title": "Hot Chocolate",
+        "inspiredBy": "Santa Clause",
+        "image": "https://images.squarespace-cdn.com/content/v1/590be7fd15d5dbc6bf3e22d0/1608648909062-81EEFWJDQA5J68KN14RU/ke17ZwdGBToddI8pDm48kDRfib_UXLRMif_QrQmyGXp7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0mjuKkDq72eEezzWZ5vHIHk0_9jUd5t9vU5pmLnFPdwPYl6rNaFySPLy0mCMabKgLg/Screen+Shot+2020-12-22+at+9.50.35+AM.png?format=1000w",
+        "ingredients": ["3 Tbsp cocoa powder", "3 Tbsp sugar", "2 Tbsp heavy cream", "1 cup milk", "1 cup heavy cream", "4 oz chocolate", "1 tsp vanilla extract (optional)", "1 tsp instant espresso powder (optional)"],
+        "directions": ["In a small bowl, combine a couple of tablespoons of heavy cream to the cocoa powder and sugar. Whisk together until a paste has formed.", "In a medium saucepan, combine 1 cup each of milk and heavy cream over medium-low heat bringing up to just before simmering.", "At 190°F, kill the heat and add in the chocolate and cocoa paste. Whisk together until melted and homogenous.", "Season with kosher salt and optionally add in vanilla extract and instant espresso powder. Whisk together.", "Once everything is mixed in, serve, and enjoy."],
+        "author": "6067883073dea200159bec20"
     }
 ]
